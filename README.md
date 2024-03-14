@@ -29,8 +29,11 @@ Make sure you have Docker installed on your machine. You can download and instal
 4. Once the Docker container is up and running, you can access the FastAPI application at [http://localhost:8000](http://localhost:8000).
 
     ```bash
+    sudo docker images
+    sudo docker ps
     sudo docker run -d -p 8000:8000 {docker_directory}:latest
     sudo docker run -d -p 8000:8000 scrap_project_sample-scrapping_project_docker:latest
+    sudo docker ps
     ```
 
 ## Usage

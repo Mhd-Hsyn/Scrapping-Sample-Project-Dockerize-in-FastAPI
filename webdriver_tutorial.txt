@@ -45,3 +45,65 @@ def get_chromedrvier_options():
 options= get_chromedrvier_options()
 driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
+
+
+
+
+______________________________________________________________
+
+##################    PYVIRTUAL DISPLAY    ############################
+
+from bs4 import BeautifulSoup
+import pandas as pd
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+from fake_useragent import UserAgent
+
+from pyvirtualdisplay import Display   # virtual display
+
+
+def get_random_headers():
+    ua = UserAgent()
+    headers = {"User-Agent": ua.random, "Accept-Language": "en-US, en;q=0.5"}
+    return headers
+
+
+def get_chromedrvier_options():
+    headers = get_random_headers()
+    print(headers)
+    # Set Chrome options
+    options = Options()
+    # options.headless = True
+    options.add_argument("--enable-logging")
+    options.add_argument("--log-level=0")
+    # options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3')
+    options.add_argument(f'user-agent={headers["User-Agent"]}')
+    options.add_argument("--no-sandbox")
+
+    ###########  THIS NEED  *****   headless= False   *******    USE VIRTUAL DISPLAY
+
+    options.add_argument('--timeout=500') # for loading page
+
+    return options
+
+
+
+def sysInit(options, address):
+
+    display = Display(visible=0, size=(800, 600))
+    display.start()
+    try:
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        driver.maximize_window()
+
+        driver.get("https://propertyinformationportal.nyc.gov/")
+
+    finally:
+        display.stop()
+        if driver:
+            driver.quit()
+

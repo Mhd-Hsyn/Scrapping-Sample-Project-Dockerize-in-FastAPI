@@ -118,10 +118,20 @@ raise child_exception_type(errno_num, err_msg, err_filename)
 OSError: [Errno 8] Exec format error: '/home/admin12/.wdm/drivers/chromedriver/linux64/129.0.6668.89/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver'
 
 
-*******  command    rm -rf ~/.wdm
+Step 1:  command
+
+    rm -rf ~/.wdm
+
+Description:- The command rm -rf ~/.wdm is a Unix/Linux command that deletes the entire .wdm directory located in your home directory. This directory is created by the webdriver-manager package and typically contains cached WebDriver binaries (like ChromeDriver, GeckoDriver, etc.) that webdriver-manager downloads for you.
+
+Step 2:
+
+upgrade webdriver-manager   
+
+from      webdriver-manager==4.0.1         To      webdriver-manager==4.0.2
 
 
-Code :
+Step 3:   Code 
 
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service

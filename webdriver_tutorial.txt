@@ -3,6 +3,7 @@ bs4==0.0.2
 requests==2.31.0
 selenium==4.1.0
 webdriver-manager==4.0.1
+fake-useragent==1.4.0
 
 
 from selenium import webdriver
@@ -107,3 +108,24 @@ def sysInit(options, address):
         if driver:
             driver.quit()
 
+
+
+
+#######################   ERROR    ##########################  Ubuntu 24.04
+
+
+raise child_exception_type(errno_num, err_msg, err_filename)
+OSError: [Errno 8] Exec format error: '/home/admin12/.wdm/drivers/chromedriver/linux64/129.0.6668.89/chromedriver-linux64/THIRD_PARTY_NOTICES.chromedriver'
+
+
+*******  command    rm -rf ~/.wdm
+
+
+Code :
+
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=options)
+driver.get("https://www.google.com")
